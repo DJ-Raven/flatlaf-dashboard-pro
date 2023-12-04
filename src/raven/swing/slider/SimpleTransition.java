@@ -96,7 +96,7 @@ public class SimpleTransition {
                     g2.scale(scale, scale);
                 }
                 g2.translate(0, -y);
-                g2.setColor(UIManager.getColor("Form.background"));
+                g2.setColor(UIManager.getColor("Panel.background"));
                 g2.setComposite(AlphaComposite.SrcOver.derive(0.4f));
                 g2.fill(new RoundRectangle2D.Double(((ltr ? -space : space) * 2) * newAnimate, (space * 2) * newAnimate, width, height - (space * 4) * newAnimate, arc, arc));
                 g2.setComposite(AlphaComposite.SrcOver.derive(0.4f + (animate * 0.6f)));
@@ -127,7 +127,7 @@ public class SimpleTransition {
             g2.scale(scale, scale);
         }
         g2.translate(0, -y);
-        g2.setColor(UIManager.getColor("Form.background"));
+        g2.setColor(UIManager.getColor("Panel.background"));
         g2.setComposite(AlphaComposite.SrcOver.derive(0.4f));
         g2.fill(new RoundRectangle2D.Double(((ltr ? -space : space) * 2) * animate, (space * 2) * animate, width, height - (space * 4) * animate, arc, arc));
         g2.fill(new RoundRectangle2D.Double((ltr ? -space : space) * animate, space * animate, width, height - (space * 2) * animate, arc, arc));

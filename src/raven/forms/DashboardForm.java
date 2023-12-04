@@ -1,11 +1,6 @@
 package raven.forms;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import com.raven.chart.ChartLegendRenderer;
-import com.raven.chart.bar.HorizontalBarChart;
-import com.raven.chart.data.category.DefaultCategoryDataset;
-import com.raven.chart.data.pie.DefaultPieDataset;
-import com.raven.chart.line.LineChart;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -18,6 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import net.miginfocom.swing.MigLayout;
+import raven.chart.ChartLegendRenderer;
+import raven.chart.bar.HorizontalBarChart;
+import raven.chart.data.category.DefaultCategoryDataset;
+import raven.chart.data.pie.DefaultPieDataset;
+import raven.chart.line.LineChart;
 import raven.components.SimpleForm;
 import raven.utils.DateCalculator;
 
@@ -41,8 +41,7 @@ public class DashboardForm extends SimpleForm {
         lineChart = new LineChart();
         JPanel panel = new JPanel(new BorderLayout());
         panel.putClientProperty(FlatClientProperties.STYLE, ""
-                + "border:5,5,5,5,$Component.borderColor,,20;"
-                + "background:$Chart.background");
+                + "border:5,5,5,5,$Component.borderColor,,20");
         JScrollPane scroll = new JScrollPane(lineChart);
         scroll.putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:0,0,0,0");
@@ -63,14 +62,13 @@ public class DashboardForm extends SimpleForm {
         barChart1.setDataset(createData());
         JPanel panel1 = new JPanel(new BorderLayout());
         panel1.putClientProperty(FlatClientProperties.STYLE, ""
-                + "border:5,5,5,5,$Component.borderColor,,20;"
-                + "background:$Chart.background");
+                + "border:5,5,5,5,$Component.borderColor,,20");
         panel1.add(barChart1);
         add(panel1, "split 2,gap 0 20");
 
         // BarChart 2
         HorizontalBarChart barChart2 = new HorizontalBarChart();
-         JLabel header2 = new JLabel("Monthly Expense");
+        JLabel header2 = new JLabel("Monthly Expense");
         header2.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:+2;"
                 + "border:0,0,5,0");
@@ -79,8 +77,7 @@ public class DashboardForm extends SimpleForm {
         barChart2.setDataset(createData());
         JPanel panel2 = new JPanel(new BorderLayout());
         panel2.putClientProperty(FlatClientProperties.STYLE, ""
-                + "border:5,5,5,5,$Component.borderColor,,20;"
-                + "background:$Chart.background");
+                + "border:5,5,5,5,$Component.borderColor,,20");
         panel2.add(barChart2);
         add(panel2);
     }

@@ -5,6 +5,7 @@ import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.formdev.flatlaf.util.UIScale;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -33,6 +34,7 @@ public class Application extends JFrame {
         setContentPane(new Background());
         FormManager.install(this);
         FormManager.showForm(new DashboardForm());
+        // applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
     public static void main(String[] args) {

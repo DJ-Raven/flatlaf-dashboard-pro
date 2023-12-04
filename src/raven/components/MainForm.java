@@ -23,8 +23,7 @@ public class MainForm extends JPanel {
     private void init() {
         putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:5,5,5,5;"
-                + "arc:30;"
-                + "background:$Form.background");
+                + "arc:30");
         setLayout(new MigLayout("wrap,fillx", "[fill]", ""));
         header = createHeader();
         panelSlider = new PanelSlider();
