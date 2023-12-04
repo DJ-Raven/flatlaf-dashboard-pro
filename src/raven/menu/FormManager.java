@@ -1,7 +1,6 @@
 package raven.menu;
 
 import java.awt.Component;
-import java.awt.Image;
 import javax.swing.JFrame;
 import raven.components.MainForm;
 import raven.swing.slider.PanelSlider;
@@ -19,7 +18,6 @@ public class FormManager {
     private final PanelSlider panelSlider;
     private final MainForm mainForm;
     private final Menu menu;
-    private Image oldFormImage;
 
     public static void install(JFrame frame) {
         instance = new FormManager(frame);
@@ -34,13 +32,12 @@ public class FormManager {
     }
 
     public static void showMenu() {
-        instance.oldFormImage = instance.panelSlider.createImage(instance.mainForm);
         instance.panelSlider.addSlide(instance.menu, SimpleTransition.getShowMenuTransition(instance.menu.getDrawerBuilder().getDrawerWidth()));
     }
 
     public static void showForm(Component component) {
         instance.mainForm.setForm(component);
-        instance.panelSlider.addSlide(instance.mainForm, SimpleTransition.getSwitchFormTransition(instance.oldFormImage, instance.menu.getDrawerBuilder().getDrawerWidth()));
+        instance.panelSlider.addSlide(instance.mainForm, SimpleTransition.getSwitchFormTransition(instance.panelSlider.createOldImage(), instance.menu.getDrawerBuilder().getDrawerWidth()));
     }
 
     public static void hideMenu() {

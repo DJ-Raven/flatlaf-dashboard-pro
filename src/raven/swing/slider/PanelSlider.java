@@ -87,6 +87,13 @@ public class PanelSlider extends JLayeredPane {
         return snapshot;
     }
 
+    public Image createOldImage() {
+        if (oldComponent != null) {
+            return createImage(oldComponent);
+        }
+        return null;
+    }
+
     private class PanelSnapshot extends JComponent {
 
         @Override
