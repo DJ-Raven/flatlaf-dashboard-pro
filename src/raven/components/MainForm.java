@@ -31,6 +31,9 @@ public class MainForm extends JPanel {
         JScrollPane scroll = new JScrollPane(panelSlider);
         scroll.putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:0,0,0,0");
+        scroll.getVerticalScrollBar().putClientProperty(FlatClientProperties.STYLE, ""
+                + "trackArc:999;"
+                + "width:10");
         scroll.getVerticalScrollBar().setUnitIncrement(10);
         add(header);
         add(scroll);
