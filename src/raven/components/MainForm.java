@@ -6,6 +6,7 @@ import java.awt.Component;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import net.miginfocom.swing.MigLayout;
 import raven.menu.FormManager;
 import raven.swing.slider.PanelSlider;
@@ -27,8 +28,12 @@ public class MainForm extends JPanel {
         setLayout(new MigLayout("wrap,fillx", "[fill]", ""));
         header = createHeader();
         panelSlider = new PanelSlider();
+        JScrollPane scroll = new JScrollPane(panelSlider);
+        scroll.putClientProperty(FlatClientProperties.STYLE, ""
+                + "border:0,0,0,0");
+        scroll.getVerticalScrollBar().setUnitIncrement(10);
         add(header);
-        add(panelSlider);
+        add(scroll);
     }
 
     private JPanel createHeader() {

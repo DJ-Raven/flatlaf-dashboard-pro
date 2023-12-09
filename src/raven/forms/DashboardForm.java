@@ -18,6 +18,7 @@ import raven.chart.bar.HorizontalBarChart;
 import raven.chart.data.category.DefaultCategoryDataset;
 import raven.chart.data.pie.DefaultPieDataset;
 import raven.chart.line.LineChart;
+import raven.chart.pie.PieChart;
 import raven.components.SimpleForm;
 import raven.utils.DateCalculator;
 
@@ -32,21 +33,53 @@ public class DashboardForm extends SimpleForm {
     }
 
     private void init() {
-        setLayout(new MigLayout("wrap,fill,gap 20", "fill"));
+        setLayout(new MigLayout("wrap,fill,gap 10", "fill"));
+        createPieChart();
         createLineChart();
         createBarChart();
     }
 
+    private void createPieChart() {
+        PieChart pieChart1 = new PieChart();
+        JLabel header1 = new JLabel("Product Income");
+        header1.putClientProperty(FlatClientProperties.STYLE, ""
+                + "font:+1");
+        pieChart1.setHeader(header1);
+        pieChart1.getChartColor().addColor(Color.decode("#f87171"), Color.decode("#fb923c"), Color.decode("#fbbf24"), Color.decode("#a3e635"), Color.decode("#34d399"), Color.decode("#22d3ee"), Color.decode("#818cf8"), Color.decode("#c084fc"));
+        pieChart1.putClientProperty(FlatClientProperties.STYLE, ""
+                + "border:5,5,5,5,$Component.borderColor,,20");
+        pieChart1.setDataset(createPieData());
+        add(pieChart1, "split 3,height 290");
+
+        PieChart pieChart2 = new PieChart();
+        JLabel header2 = new JLabel("Product Cost");
+        header2.putClientProperty(FlatClientProperties.STYLE, ""
+                + "font:+1");
+        pieChart2.setHeader(header2);
+        pieChart2.getChartColor().addColor(Color.decode("#f87171"), Color.decode("#fb923c"), Color.decode("#fbbf24"), Color.decode("#a3e635"), Color.decode("#34d399"), Color.decode("#22d3ee"), Color.decode("#818cf8"), Color.decode("#c084fc"));
+        pieChart2.putClientProperty(FlatClientProperties.STYLE, ""
+                + "border:5,5,5,5,$Component.borderColor,,20");
+        pieChart2.setDataset(createPieData());
+        add(pieChart2, "height 290");
+
+        PieChart pieChart3 = new PieChart();
+        JLabel header3 = new JLabel("Product Profit");
+        header3.putClientProperty(FlatClientProperties.STYLE, ""
+                + "font:+1");
+        pieChart3.setHeader(header3);
+        pieChart3.getChartColor().addColor(Color.decode("#f87171"), Color.decode("#fb923c"), Color.decode("#fbbf24"), Color.decode("#a3e635"), Color.decode("#34d399"), Color.decode("#22d3ee"), Color.decode("#818cf8"), Color.decode("#c084fc"));
+        pieChart3.setChartType(PieChart.ChartType.DONUT_CHART);
+        pieChart3.putClientProperty(FlatClientProperties.STYLE, ""
+                + "border:5,5,5,5,$Component.borderColor,,20");
+        pieChart3.setDataset(createPieData());
+        add(pieChart3, "height 290");
+    }
+
     private void createLineChart() {
         lineChart = new LineChart();
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.putClientProperty(FlatClientProperties.STYLE, ""
+        lineChart.putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:5,5,5,5,$Component.borderColor,,20");
-        JScrollPane scroll = new JScrollPane(lineChart);
-        scroll.putClientProperty(FlatClientProperties.STYLE, ""
-                + "border:0,0,0,0");
-        panel.add(scroll);
-        add(panel);
+        add(lineChart);
         createLineChartData();
     }
 
@@ -55,7 +88,7 @@ public class DashboardForm extends SimpleForm {
         HorizontalBarChart barChart1 = new HorizontalBarChart();
         JLabel header1 = new JLabel("Monthly Income");
         header1.putClientProperty(FlatClientProperties.STYLE, ""
-                + "font:+2;"
+                + "font:+1;"
                 + "border:0,0,5,0");
         barChart1.setHeader(header1);
         barChart1.setBarColor(Color.decode("#f97316"));
@@ -70,7 +103,7 @@ public class DashboardForm extends SimpleForm {
         HorizontalBarChart barChart2 = new HorizontalBarChart();
         JLabel header2 = new JLabel("Monthly Expense");
         header2.putClientProperty(FlatClientProperties.STYLE, ""
-                + "font:+2;"
+                + "font:+1;"
                 + "border:0,0,5,0");
         barChart2.setHeader(header2);
         barChart2.setBarColor(Color.decode("#10b981"));
@@ -91,6 +124,17 @@ public class DashboardForm extends SimpleForm {
         dataset.addValue("April", random.nextInt(100));
         dataset.addValue("March", random.nextInt(100));
         dataset.addValue("February", random.nextInt(100));
+        return dataset;
+    }
+
+    private DefaultPieDataset createPieData() {
+        DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
+        Random random = new Random();
+        dataset.addValue("Bags", random.nextInt(100));
+        dataset.addValue("Hats", random.nextInt(100));
+        dataset.addValue("Glasses", random.nextInt(100));
+        dataset.addValue("Watches", random.nextInt(100));
+        dataset.addValue("Jewelry", random.nextInt(100));
         return dataset;
     }
 
@@ -138,7 +182,7 @@ public class DashboardForm extends SimpleForm {
         lineChart.getChartColor().addColor(Color.decode("#38bdf8"), Color.decode("#fb7185"), Color.decode("#34d399"));
         JLabel header = new JLabel("Income Data");
         header.putClientProperty(FlatClientProperties.STYLE, ""
-                + "font:+2;"
+                + "font:+1;"
                 + "border:0,0,5,0");
         lineChart.setHeader(header);
     }
