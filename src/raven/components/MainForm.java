@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import net.miginfocom.swing.MigLayout;
 import raven.menu.FormManager;
 import raven.swing.slider.PanelSlider;
+import raven.swing.slider.SimpleTransition;
 
 /**
  *
@@ -61,6 +62,11 @@ public class MainForm extends JPanel {
                 + "focusWidth:0;"
                 + "innerFocusWidth:0");
         return button;
+    }
+
+    public void showForm(Component component) {
+        panelSlider.addSlide(component, SimpleTransition.getDefaultTransition(false));
+        revalidate();
     }
 
     public void setForm(Component component) {

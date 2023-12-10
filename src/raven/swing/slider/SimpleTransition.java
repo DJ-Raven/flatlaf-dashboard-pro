@@ -19,6 +19,29 @@ public class SimpleTransition {
 
     private static final float ZOOM_IN = 0.1f;
 
+    public static SliderTransition getDefaultTransition(boolean toRight) {
+        return new SliderTransition() {
+            @Override
+            public void renderImageOld(Component component, Graphics g, Image image, int width, int height, float animate) {
+                g.drawImage(image, 0, 0, null);
+                g.dispose();
+            }
+
+            @Override
+            public void renderImageNew(Component component, Graphics g, Image image, int width, int height, float animate) {
+                Graphics2D g2 = (Graphics2D) g;
+                int move = UIScale.scale(200);
+                int x = (int) (move * (1f - animate));
+                if (toRight) {
+                    x = -x;
+                }
+                g2.setComposite(AlphaComposite.SrcOver.derive(animate));
+                g2.drawImage(image, x, 0, null);
+                g2.dispose();
+            }
+        };
+    }
+
     public static SliderTransition getShowMenuTransition(int drawerWidth) {
 
         return new SliderTransition() {

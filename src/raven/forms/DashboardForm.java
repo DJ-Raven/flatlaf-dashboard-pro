@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import net.miginfocom.swing.MigLayout;
 import raven.chart.ChartLegendRenderer;
 import raven.chart.bar.HorizontalBarChart;
@@ -130,11 +129,11 @@ public class DashboardForm extends SimpleForm {
     private DefaultPieDataset createPieData() {
         DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
         Random random = new Random();
-        dataset.addValue("Bags", random.nextInt(100));
-        dataset.addValue("Hats", random.nextInt(100));
-        dataset.addValue("Glasses", random.nextInt(100));
-        dataset.addValue("Watches", random.nextInt(100));
-        dataset.addValue("Jewelry", random.nextInt(100));
+        dataset.addValue("Bags", random.nextInt(100) + 50);
+        dataset.addValue("Hats", random.nextInt(100) + 50);
+        dataset.addValue("Glasses", random.nextInt(100) + 50);
+        dataset.addValue("Watches", random.nextInt(100) + 50);
+        dataset.addValue("Jewelry", random.nextInt(100) + 50);
         return dataset;
     }
 

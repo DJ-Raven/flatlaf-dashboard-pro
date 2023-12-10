@@ -1,6 +1,7 @@
 package raven.menu;
 
 import java.awt.Component;
+import java.awt.Image;
 import javax.swing.JFrame;
 import raven.components.MainForm;
 import raven.swing.slider.PanelSlider;
@@ -15,6 +16,7 @@ public class FormManager {
     private static FormManager instance;
     private final JFrame frame;
 
+    private boolean menuShowing = true;
     private final PanelSlider panelSlider;
     private final MainForm mainForm;
     private final Menu menu;
@@ -32,15 +34,23 @@ public class FormManager {
     }
 
     public static void showMenu() {
+        instance.menuShowing = true;
         instance.panelSlider.addSlide(instance.menu, SimpleTransition.getShowMenuTransition(instance.menu.getDrawerBuilder().getDrawerWidth()));
     }
 
     public static void showForm(Component component) {
-        instance.mainForm.setForm(component);
-        instance.panelSlider.addSlide(instance.mainForm, SimpleTransition.getSwitchFormTransition(instance.panelSlider.createOldImage(), instance.menu.getDrawerBuilder().getDrawerWidth()));
+        if (instance.menuShowing == true) {
+            instance.menuShowing = false;
+            Image oldImage = instance.panelSlider.createOldImage();
+            instance.mainForm.setForm(component);
+            instance.panelSlider.addSlide(instance.mainForm, SimpleTransition.getSwitchFormTransition(oldImage, instance.menu.getDrawerBuilder().getDrawerWidth()));
+        } else {
+            instance.mainForm.showForm(component);
+        }
     }
 
     public static void hideMenu() {
+        instance.menuShowing = false;
         instance.panelSlider.addSlide(instance.mainForm, SimpleTransition.getHideMenuTransition(instance.menu.getDrawerBuilder().getDrawerWidth()));
     }
 }
