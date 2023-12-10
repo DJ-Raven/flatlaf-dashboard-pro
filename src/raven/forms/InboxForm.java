@@ -31,7 +31,7 @@ public class InboxForm extends SimpleForm {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
+                .addContainerGap(660, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(88, 88, 88))
         );
@@ -40,7 +40,7 @@ public class InboxForm extends SimpleForm {
             .addGroup(layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addComponent(jButton1)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

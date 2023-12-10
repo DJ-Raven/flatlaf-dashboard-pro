@@ -34,7 +34,7 @@ public class Application extends JFrame {
         setContentPane(new Background());
         FormManager.install(this);
         FormManager.showForm(new DashboardForm());
-        // applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+       // applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
     public static void main(String[] args) {

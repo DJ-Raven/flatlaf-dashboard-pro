@@ -19,6 +19,7 @@ import raven.drawer.component.menu.SimpleMenuOption;
 import raven.drawer.component.menu.SimpleMenuStyle;
 import raven.forms.DashboardForm;
 import raven.forms.InboxForm;
+import raven.forms.ReadForm;
 import raven.swing.AvatarIcon;
 
 /**
@@ -84,6 +85,7 @@ public class MyDrawerBuilder extends SimpleDrawerBuilder {
             {"Charts", "Apex", "Flot", "Sparkline"},
             {"Icons", "Feather Icons", "Flag Icons", "Mdi Icons"},
             {"Special Pages", "Blank page", "Faq", "Invoice", "Profile", "Pricing", "Timeline"},};
+        
         String icons[] = {
             "dashboard.svg",
             "email.svg",
@@ -94,6 +96,7 @@ public class MyDrawerBuilder extends SimpleDrawerBuilder {
             "chart.svg",
             "icon.svg",
             "page.svg",};
+        
         SimpleMenuOption simpleMenuOption = new SimpleMenuOption() {
             @Override
             public Icon buildMenuIcon(String path, float scale) {
@@ -141,6 +144,8 @@ public class MyDrawerBuilder extends SimpleDrawerBuilder {
                 } else if (index == 1) {
                     if (subIndex == 1) {
                         FormManager.showForm(new InboxForm());
+                    }else if(subIndex==2){
+                        FormManager.showForm(new ReadForm());
                     }
                 }
             }

@@ -76,6 +76,7 @@ public class DashboardForm extends SimpleForm {
 
     private void createLineChart() {
         lineChart = new LineChart();
+        lineChart.setChartType(LineChart.ChartType.LINE);
         lineChart.putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:5,5,5,5,$Component.borderColor,,20");
         add(lineChart);
@@ -142,7 +143,7 @@ public class DashboardForm extends SimpleForm {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("MMM dd, yyyy");
         Random ran = new Random();
-        int randomDate = 7;
+        int randomDate =30;
         for (int i = 1; i <= randomDate; i++) {
             String date = df.format(cal.getTime());
             categoryDataset.addValue(ran.nextInt(700) + 5, "Income", date);
