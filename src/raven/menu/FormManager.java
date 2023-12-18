@@ -1,9 +1,9 @@
 package raven.menu;
 
-import java.awt.Component;
 import java.awt.Image;
 import javax.swing.JFrame;
 import raven.components.MainForm;
+import raven.components.SimpleForm;
 import raven.swing.slider.PanelSlider;
 import raven.swing.slider.SimpleTransition;
 
@@ -38,7 +38,7 @@ public class FormManager {
         instance.panelSlider.addSlide(instance.menu, SimpleTransition.getShowMenuTransition(instance.menu.getDrawerBuilder().getDrawerWidth()));
     }
 
-    public static void showForm(Component component) {
+    public static void showForm(SimpleForm component) {
         if (instance.menuShowing == true) {
             instance.menuShowing = false;
             Image oldImage = instance.panelSlider.createOldImage();

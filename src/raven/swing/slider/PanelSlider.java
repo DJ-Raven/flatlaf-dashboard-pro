@@ -99,9 +99,11 @@ public class PanelSlider extends JLayeredPane {
         @Override
         public void updateUI() {
             super.updateUI();
-            if (oldComponent != null) {
-                SwingUtilities.updateComponentTreeUI(oldComponent);
-                oldImage = PanelSlider.this.createImage(oldComponent);
+            if (sliderTransition != null && !sliderTransition.closeAfterAnimation()) {
+                if (oldComponent != null) {
+                    SwingUtilities.updateComponentTreeUI(oldComponent);
+                    oldImage = PanelSlider.this.createImage(oldComponent);
+                }
             }
         }
 

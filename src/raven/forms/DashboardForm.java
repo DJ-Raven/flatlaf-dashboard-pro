@@ -39,7 +39,7 @@ public class DashboardForm extends SimpleForm {
     }
 
     private void createPieChart() {
-        PieChart pieChart1 = new PieChart();
+        pieChart1 = new PieChart();
         JLabel header1 = new JLabel("Product Income");
         header1.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:+1");
@@ -50,7 +50,7 @@ public class DashboardForm extends SimpleForm {
         pieChart1.setDataset(createPieData());
         add(pieChart1, "split 3,height 290");
 
-        PieChart pieChart2 = new PieChart();
+        pieChart2 = new PieChart();
         JLabel header2 = new JLabel("Product Cost");
         header2.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:+1");
@@ -61,7 +61,7 @@ public class DashboardForm extends SimpleForm {
         pieChart2.setDataset(createPieData());
         add(pieChart2, "height 290");
 
-        PieChart pieChart3 = new PieChart();
+        pieChart3 = new PieChart();
         JLabel header3 = new JLabel("Product Profit");
         header3.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:+1");
@@ -85,7 +85,7 @@ public class DashboardForm extends SimpleForm {
 
     private void createBarChart() {
         // BarChart 1
-        HorizontalBarChart barChart1 = new HorizontalBarChart();
+        barChart1 = new HorizontalBarChart();
         JLabel header1 = new JLabel("Monthly Income");
         header1.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:+1;"
@@ -100,7 +100,7 @@ public class DashboardForm extends SimpleForm {
         add(panel1, "split 2,gap 0 20");
 
         // BarChart 2
-        HorizontalBarChart barChart2 = new HorizontalBarChart();
+        barChart2 = new HorizontalBarChart();
         JLabel header2 = new JLabel("Monthly Expense");
         header2.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:+1;"
@@ -143,7 +143,7 @@ public class DashboardForm extends SimpleForm {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("MMM dd, yyyy");
         Random ran = new Random();
-        int randomDate =30;
+        int randomDate = 30;
         for (int i = 1; i <= randomDate; i++) {
             String date = df.format(cal.getTime());
             categoryDataset.addValue(ran.nextInt(700) + 5, "Income", date);
@@ -188,4 +188,9 @@ public class DashboardForm extends SimpleForm {
     }
 
     private LineChart lineChart;
+    private HorizontalBarChart barChart1;
+    private HorizontalBarChart barChart2;
+    private PieChart pieChart1;
+    private PieChart pieChart2;
+    private PieChart pieChart3;
 }

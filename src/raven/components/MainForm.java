@@ -45,7 +45,7 @@ public class MainForm extends JPanel {
         panel.putClientProperty(FlatClientProperties.STYLE, ""
                 + "background:null");
 
-        JButton cmdMenu = createButton(new FlatSVGIcon("raven/resources/icon/menu.svg"));
+        cmdMenu = createButton(new FlatSVGIcon("raven/resources/icon/menu.svg"));
         cmdMenu.addActionListener(e -> {
             FormManager.showMenu();
         });
@@ -74,5 +74,6 @@ public class MainForm extends JPanel {
     }
 
     private JPanel header;
+    private JButton cmdMenu;
     private PanelSlider panelSlider;
 }
