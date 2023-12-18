@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import raven.chart.ChartLegendRenderer;
@@ -29,6 +30,31 @@ public class DashboardForm extends SimpleForm {
 
     public DashboardForm() {
         init();
+    }
+
+    @Override
+    public void formRefresh() {
+        lineChart.startAnimation();
+        pieChart1.startAnimation();
+        pieChart2.startAnimation();
+        pieChart3.startAnimation();
+        barChart1.startAnimation();
+        barChart2.startAnimation();
+    }
+
+    @Override
+    public void formInitAndOpen() {
+        System.out.println("init and open");
+    }
+
+    @Override
+    public void formOpen() {
+        System.out.println("Open");
+    }
+
+    @Override
+    public boolean formClose() {
+        return JOptionPane.showConfirmDialog(this, "Are you sure to close ?") == JOptionPane.YES_OPTION;
     }
 
     private void init() {
