@@ -31,6 +31,26 @@ public class DashboardForm extends SimpleForm {
         init();
     }
 
+    @Override
+    public void formRefresh() {
+        lineChart.startAnimation();
+        pieChart1.startAnimation();
+        pieChart2.startAnimation();
+        pieChart3.startAnimation();
+        barChart1.startAnimation();
+        barChart2.startAnimation();
+    }
+
+    @Override
+    public void formInitAndOpen() {
+        System.out.println("init and open");
+    }
+
+    @Override
+    public void formOpen() {
+        System.out.println("Open");
+    }
+
     private void init() {
         setLayout(new MigLayout("wrap,fill,gap 10", "fill"));
         createPieChart();

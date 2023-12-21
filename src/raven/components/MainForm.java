@@ -46,10 +46,26 @@ public class MainForm extends JPanel {
                 + "background:null");
 
         cmdMenu = createButton(new FlatSVGIcon("raven/resources/icon/menu.svg"));
+        cmdUndo = createButton(new FlatSVGIcon("raven/resources/icon/undo.svg"));
+        cmdRedo = createButton(new FlatSVGIcon("raven/resources/icon/redo.svg"));
+        cmdRefresh = createButton(new FlatSVGIcon("raven/resources/icon/refresh.svg"));
         cmdMenu.addActionListener(e -> {
             FormManager.showMenu();
         });
+        cmdUndo.addActionListener(e -> {
+            FormManager.undo();
+        });
+        cmdRedo.addActionListener(e -> {
+            FormManager.redo();
+        });
+        cmdRefresh.addActionListener(e -> {
+            FormManager.refresh();
+        });
+
         panel.add(cmdMenu);
+        panel.add(cmdUndo);
+        panel.add(cmdRedo);
+        panel.add(cmdRefresh);
         return panel;
     }
 
@@ -65,15 +81,26 @@ public class MainForm extends JPanel {
     }
 
     public void showForm(Component component) {
+        checkButton();
         panelSlider.addSlide(component, SimpleTransition.getDefaultTransition(false));
         revalidate();
     }
 
     public void setForm(Component component) {
+        checkButton();
         panelSlider.addSlide(component, null);
+    }
+
+    private void checkButton() {
+        cmdUndo.setEnabled(FormManager.getForms().isUndoAble());
+        cmdRedo.setEnabled(FormManager.getForms().isRedoAble());
+        cmdRefresh.setEnabled(FormManager.getForms().getCurrent() != null);
     }
 
     private JPanel header;
     private JButton cmdMenu;
+    private JButton cmdUndo;
+    private JButton cmdRedo;
+    private JButton cmdRefresh;
     private PanelSlider panelSlider;
 }
