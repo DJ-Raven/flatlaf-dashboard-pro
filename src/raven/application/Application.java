@@ -14,6 +14,7 @@ import javax.swing.UIManager;
 import raven.components.Background;
 import raven.forms.DashboardForm;
 import raven.menu.FormManager;
+import raven.popup.GlassPanePopup;
 
 /**
  *
@@ -32,9 +33,11 @@ public class Application extends JFrame {
         setSize(UIScale.scale(new Dimension(1366, 768)));
         setLocationRelativeTo(null);
         setContentPane(new Background());
+        // applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        GlassPanePopup.install(this);
         FormManager.install(this);
         FormManager.showForm(new DashboardForm());
-       // applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        // applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
     public static void main(String[] args) {
