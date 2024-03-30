@@ -11,6 +11,7 @@ import net.miginfocom.swing.MigLayout;
 import raven.menu.FormManager;
 import raven.swing.slider.PanelSlider;
 import raven.swing.slider.SimpleTransition;
+import raven.swing.slider.SliderTransition;
 
 /**
  *
@@ -80,10 +81,14 @@ public class MainForm extends JPanel {
         return button;
     }
 
-    public void showForm(Component component) {
+    public void showForm(Component component, SliderTransition transition) {
         checkButton();
-        panelSlider.addSlide(component, SimpleTransition.getDefaultTransition(false));
+        panelSlider.addSlide(component, transition);
         revalidate();
+    }
+
+    public void showForm(Component component) {
+        showForm(component, SimpleTransition.getDefaultTransition(false));
     }
 
     public void setForm(Component component) {
