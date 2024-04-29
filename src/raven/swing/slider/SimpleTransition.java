@@ -7,9 +7,12 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.geom.Area;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.UIManager;
+import raven.application.Application;
 
 /**
  *
@@ -156,6 +159,12 @@ public class SimpleTransition {
         g2.fill(new RoundRectangle2D.Double((ltr ? -space : space) * animate, space * animate, width, height - (space * 2) * animate, arc, arc));
         g2.setComposite(AlphaComposite.SrcOver);
         g2.drawImage(image, 0, 0, null);
+        if (!Application.UNDECORATED) {
+            g2.setColor(UIManager.getColor("Drawer.background"));
+            Area area = new Area(new Rectangle.Double(0, 0, width, height));
+            area.subtract(new Area(new RoundRectangle2D.Double(0, 0, width, height, arc, arc)));
+            g2.fill(area);
+        }
         g2.dispose();
     }
 }

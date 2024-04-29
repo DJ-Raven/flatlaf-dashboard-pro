@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
+import raven.application.Application;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Background extends JPanel {
     }
 
     private void init() {
-        setOpaque(false);
+        setOpaque(!Application.UNDECORATED);
         setLayout(new BorderLayout());
         putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:5,5,5,5;"
@@ -28,12 +29,14 @@ public class Background extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g.create();
-        FlatUIUtils.setRenderingHints(g2);
-        int arc = UIScale.scale(30);
-        g2.setColor(getBackground());
-        FlatUIUtils.paintComponentBackground(g2, 0, 0, getWidth(), getHeight(), 0, arc);
-        g2.dispose();
+        if (Application.UNDECORATED) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            FlatUIUtils.setRenderingHints(g2);
+            int arc = UIScale.scale(30);
+            g2.setColor(getBackground());
+            FlatUIUtils.paintComponentBackground(g2, 0, 0, getWidth(), getHeight(), 0, arc);
+            g2.dispose();
+        }
         super.paintComponent(g);
     }
 }

@@ -1,5 +1,6 @@
 package raven.application;
 
+import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
@@ -21,13 +22,19 @@ import raven.popup.GlassPanePopup;
  */
 public class Application extends JFrame {
 
+    public static final boolean UNDECORATED = !true;
+
     public Application() {
         init();
     }
 
     private void init() {
-        setUndecorated(true);
-        setBackground(new Color(0, 0, 0, 0));
+        if (UNDECORATED) {
+            setUndecorated(UNDECORATED);
+            setBackground(new Color(0, 0, 0, 0));
+        } else {
+            getRootPane().putClientProperty(FlatClientProperties.FULL_WINDOW_CONTENT, true);
+        }
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(UIScale.scale(new Dimension(1366, 768)));
         setLocationRelativeTo(null);
