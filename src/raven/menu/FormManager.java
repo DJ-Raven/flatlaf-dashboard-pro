@@ -65,7 +65,7 @@ public class FormManager {
     public static void undo() {
         if (isNewFormAble()) {
             if (!instance.menuShowing && instance.forms.isUndoAble()) {
-                instance.mainForm.showForm(instance.forms.undo());
+                instance.mainForm.showForm(instance.forms.undo(), SimpleTransition.getDefaultTransition(true));
                 instance.forms.getCurrent().formOpen();
             }
         }
