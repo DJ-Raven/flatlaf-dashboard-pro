@@ -7,7 +7,6 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
-import raven.application.Application;
 
 /**
  *
@@ -15,12 +14,15 @@ import raven.application.Application;
  */
 public class Background extends JPanel {
 
-    public Background() {
+    private final boolean udecorated;
+    
+    public Background(boolean udecorated) {
+        this.udecorated=udecorated;
         init();
     }
 
     private void init() {
-        setOpaque(!Application.UNDECORATED);
+        setOpaque(!udecorated);
         setLayout(new BorderLayout());
         putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:5,5,5,5;"
@@ -29,7 +31,7 @@ public class Background extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        if (Application.UNDECORATED) {
+        if (udecorated) {
             Graphics2D g2 = (Graphics2D) g.create();
             FlatUIUtils.setRenderingHints(g2);
             int arc = UIScale.scale(30);

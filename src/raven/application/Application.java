@@ -22,26 +22,26 @@ import raven.popup.GlassPanePopup;
  */
 public class Application extends JFrame {
 
-    public static final boolean UNDECORATED = !true;
+    private final boolean UNDECORATED = !true;
 
     public Application() {
         init();
     }
 
     private void init() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(UIScale.scale(new Dimension(1366, 768)));
+        setLocationRelativeTo(null);
         if (UNDECORATED) {
             setUndecorated(UNDECORATED);
             setBackground(new Color(0, 0, 0, 0));
         } else {
             getRootPane().putClientProperty(FlatClientProperties.FULL_WINDOW_CONTENT, true);
         }
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(UIScale.scale(new Dimension(1366, 768)));
-        setLocationRelativeTo(null);
-        setContentPane(new Background());
+        setContentPane(new Background(UNDECORATED));
         // applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         GlassPanePopup.install(this);
-        FormManager.install(this);
+        FormManager.install(this, UNDECORATED);
         FormManager.showForm(new DashboardForm());
         // applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }

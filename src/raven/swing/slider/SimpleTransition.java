@@ -12,7 +12,6 @@ import java.awt.RenderingHints;
 import java.awt.geom.Area;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.UIManager;
-import raven.application.Application;
 
 /**
  *
@@ -45,13 +44,13 @@ public class SimpleTransition {
         };
     }
 
-    public static SliderTransition getShowMenuTransition(int drawerWidth) {
+    public static SliderTransition getShowMenuTransition(int drawerWidth, boolean undecorated) {
 
         return new SliderTransition() {
 
             @Override
             public void renderImageOld(Component component, Graphics g, Image image, int width, int height, float animate) {
-                renderImage(component, g, image, width, height, drawerWidth, animate);
+                renderImage(component, g, image, width, height, drawerWidth, animate, undecorated);
             }
 
             @Override
@@ -75,7 +74,7 @@ public class SimpleTransition {
         };
     }
 
-    public static SliderTransition getHideMenuTransition(int drawerWidth) {
+    public static SliderTransition getHideMenuTransition(int drawerWidth, boolean undecorated) {
         return new SliderTransition() {
 
             @Override
@@ -88,7 +87,7 @@ public class SimpleTransition {
 
             @Override
             public void renderImageNew(Component component, Graphics g, Image image, int width, int height, float animate) {
-                renderImage(component, g, image, width, height, drawerWidth, 1f - animate);
+                renderImage(component, g, image, width, height, drawerWidth, 1f - animate, undecorated);
             }
         };
     }
@@ -134,7 +133,7 @@ public class SimpleTransition {
         };
     }
 
-    private static void renderImage(Component component, Graphics g, Image image, int width, int height, int drawerWidth, float animate) {
+    private static void renderImage(Component component, Graphics g, Image image, int width, int height, int drawerWidth, float animate, boolean undecorated) {
         Graphics2D g2 = (Graphics2D) g;
         FlatUIUtils.setRenderingHints(g2);
         float zoomIn = ZOOM_IN;
@@ -159,7 +158,7 @@ public class SimpleTransition {
         g2.fill(new RoundRectangle2D.Double((ltr ? -space : space) * animate, space * animate, width, height - (space * 2) * animate, arc, arc));
         g2.setComposite(AlphaComposite.SrcOver);
         g2.drawImage(image, 0, 0, null);
-        if (!Application.UNDECORATED) {
+        if (!undecorated) {
             g2.setColor(UIManager.getColor("Drawer.background"));
             Area area = new Area(new Rectangle.Double(0, 0, width, height));
             area.subtract(new Area(new RoundRectangle2D.Double(0, 0, width, height, arc, arc)));

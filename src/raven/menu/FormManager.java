@@ -24,22 +24,24 @@ public class FormManager {
     private final PanelSlider panelSlider;
     private final MainForm mainForm;
     private final Menu menu;
+    private final boolean undecorated;
 
-    public static void install(JFrame frame) {
-        instance = new FormManager(frame);
+    public static void install(JFrame frame, boolean undecorated) {
+        instance = new FormManager(frame, undecorated);
     }
 
-    private FormManager(JFrame frame) {
+    private FormManager(JFrame frame, boolean undecorated) {
         this.frame = frame;
         panelSlider = new PanelSlider();
-        mainForm = new MainForm();
+        mainForm = new MainForm(undecorated);
         menu = new Menu(new MyDrawerBuilder());
         this.frame.getContentPane().add(panelSlider);
+        this.undecorated = undecorated;
     }
 
     public static void showMenu() {
         instance.menuShowing = true;
-        instance.panelSlider.addSlide(instance.menu, SimpleTransition.getShowMenuTransition(instance.menu.getDrawerBuilder().getDrawerWidth()));
+        instance.panelSlider.addSlide(instance.menu, SimpleTransition.getShowMenuTransition(instance.menu.getDrawerBuilder().getDrawerWidth(), instance.undecorated));
     }
 
     public static void showForm(SimpleForm component) {
@@ -59,7 +61,7 @@ public class FormManager {
 
     public static void hideMenu() {
         instance.menuShowing = false;
-        instance.panelSlider.addSlide(instance.mainForm, SimpleTransition.getHideMenuTransition(instance.menu.getDrawerBuilder().getDrawerWidth()));
+        instance.panelSlider.addSlide(instance.mainForm, SimpleTransition.getHideMenuTransition(instance.menu.getDrawerBuilder().getDrawerWidth(), instance.undecorated));
     }
 
     public static void undo() {

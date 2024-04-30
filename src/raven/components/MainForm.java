@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import net.miginfocom.swing.MigLayout;
-import raven.application.Application;
 import raven.menu.FormManager;
 import raven.swing.slider.PanelSlider;
 import raven.swing.slider.SimpleTransition;
@@ -20,12 +19,15 @@ import raven.swing.slider.SliderTransition;
  */
 public class MainForm extends JPanel {
 
-    public MainForm() {
+    private final boolean undecorated;
+
+    public MainForm(boolean undecorated) {
+        this.undecorated = undecorated;
         init();
     }
 
     private void init() {
-        if (Application.UNDECORATED) {
+        if (undecorated) {
             putClientProperty(FlatClientProperties.STYLE, ""
                     + "border:5,5,5,5;"
                     + "arc:30");
