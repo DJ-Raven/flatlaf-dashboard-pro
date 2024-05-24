@@ -1,10 +1,12 @@
 package raven.menu;
 
+import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import raven.components.MainForm;
 import raven.components.SimpleForm;
+import raven.login.Login;
 import raven.swing.slider.PanelSlider;
 import raven.swing.slider.SimpleTransition;
 import raven.utils.UndoRedo;
@@ -35,7 +37,6 @@ public class FormManager {
         panelSlider = new PanelSlider();
         mainForm = new MainForm(undecorated);
         menu = new Menu(new MyDrawerBuilder());
-        this.frame.getContentPane().add(panelSlider);
         this.undecorated = undecorated;
     }
 
@@ -57,6 +58,24 @@ public class FormManager {
             }
             instance.forms.getCurrent().formInitAndOpen();
         }
+    }
+
+    public static void logout() {
+        FlatAnimatedLafChange.showSnapshot();
+        instance.frame.getContentPane().removeAll();
+        instance.frame.getContentPane().add(new Login());
+        instance.frame.repaint();
+        instance.frame.revalidate();
+        FlatAnimatedLafChange.hideSnapshotWithAnimation();
+    }
+
+    public static void login() {
+        FlatAnimatedLafChange.showSnapshot();
+        instance.frame.getContentPane().removeAll();
+        instance.frame.getContentPane().add(instance.panelSlider);
+        instance.frame.repaint();
+        instance.frame.revalidate();
+        FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
 
     public static void hideMenu() {

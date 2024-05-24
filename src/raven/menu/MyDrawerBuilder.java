@@ -125,7 +125,8 @@ public class MyDrawerBuilder extends SimpleDrawerBuilder {
             .subMenu("Invoice")
             .subMenu("Profile")
             .subMenu("Pricing")
-            .subMenu("Timeline")
+            .subMenu("Timeline"),
+            new Item("Logout", "logout.svg")
         };
 
         SimpleMenuOption simpleMenuOption = new SimpleMenuOption() {
@@ -166,6 +167,10 @@ public class MyDrawerBuilder extends SimpleDrawerBuilder {
                 if (index.length == 1) {
                     if (index[0] == 0) {
                         FormManager.showForm(new DashboardForm());
+                    }
+                    if (index[0] == 9) {
+                        // logout
+                        FormManager.logout();
                     }
                 } else if (index.length == 2) {
                     if (index[0] == 1) {

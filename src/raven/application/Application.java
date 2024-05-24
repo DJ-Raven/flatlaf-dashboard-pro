@@ -3,7 +3,7 @@ package raven.application;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.util.UIScale;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -43,6 +43,7 @@ public class Application extends JFrame {
         GlassPanePopup.install(this);
         FormManager.install(this, UNDECORATED);
         FormManager.showForm(new DashboardForm());
+        FormManager.logout();
         // applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
@@ -50,7 +51,7 @@ public class Application extends JFrame {
         FlatRobotoFont.install();
         FlatLaf.registerCustomDefaultsSource("raven.themes");
         UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
-        FlatMacLightLaf.setup();
+        FlatMacDarkLaf.setup();
         EventQueue.invokeLater(() -> new Application().setVisible(true));
     }
 }

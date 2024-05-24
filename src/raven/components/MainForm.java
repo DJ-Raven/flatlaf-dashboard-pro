@@ -80,6 +80,7 @@ public class MainForm extends JPanel {
         button.putClientProperty(FlatClientProperties.STYLE, ""
                 + "background:$Button.toolbar.background;"
                 + "arc:10;"
+                + "margin:3,3,3,3;"
                 + "borderWidth:0;"
                 + "focusWidth:0;"
                 + "innerFocusWidth:0");
