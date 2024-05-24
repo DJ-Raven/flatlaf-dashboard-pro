@@ -7,6 +7,7 @@ import javax.swing.SwingUtilities;
 import raven.components.MainForm;
 import raven.components.SimpleForm;
 import raven.login.Login;
+import raven.model.ModelUser;
 import raven.swing.slider.PanelSlider;
 import raven.swing.slider.SimpleTransition;
 import raven.utils.UndoRedo;
@@ -69,10 +70,12 @@ public class FormManager {
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
 
-    public static void login() {
+    public static void login(ModelUser user) {
         FlatAnimatedLafChange.showSnapshot();
         instance.frame.getContentPane().removeAll();
         instance.frame.getContentPane().add(instance.panelSlider);
+        // set new user and rebuild menu for user role
+        ((MyDrawerBuilder) instance.menu.getDrawerBuilder()).setUser(user);
         instance.frame.repaint();
         instance.frame.revalidate();
         FlatAnimatedLafChange.hideSnapshotWithAnimation();

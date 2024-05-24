@@ -15,6 +15,7 @@ import raven.drawer.component.header.SimpleHeaderData;
 import raven.drawer.component.header.SimpleHeaderStyle;
 import raven.drawer.component.menu.MenuAction;
 import raven.drawer.component.menu.MenuEvent;
+import raven.drawer.component.menu.MenuValidation;
 import raven.drawer.component.menu.SimpleMenuOption;
 import raven.drawer.component.menu.SimpleMenuStyle;
 import raven.drawer.component.menu.data.Item;
@@ -22,6 +23,7 @@ import raven.drawer.component.menu.data.MenuItem;
 import raven.forms.DashboardForm;
 import raven.forms.InboxForm;
 import raven.forms.ReadForm;
+import raven.model.ModelUser;
 import raven.swing.AvatarIcon;
 
 /**
@@ -30,7 +32,13 @@ import raven.swing.AvatarIcon;
  */
 public class MyDrawerBuilder extends SimpleDrawerBuilder {
 
+    private ModelUser user;
     private final ThemesChange themesChange;
+
+    public void setUser(ModelUser user) {
+        this.user = user;
+        rebuildMenu();
+    }
 
     public MyDrawerBuilder() {
         themesChange = new ThemesChange();
@@ -140,6 +148,44 @@ public class MyDrawerBuilder extends SimpleDrawerBuilder {
             }
         };
 
+        simpleMenuOption.setMenuValidation(new MenuValidation() {
+
+            private boolean checkMenu(int[] index, int[] indexHide) {
+                if (index.length == indexHide.length) {
+                    for (int i = 0; i < index.length; i++) {
+                        if (index[i] != indexHide[i]) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+                return true;
+            }
+
+            @Override
+            public boolean menuValidation(int[] index) {
+                if (user == null) {
+                    return false;
+                }
+                if (!user.isAdmin()) {
+                    // non user admin going to hide
+                    boolean act
+                            // `Email`->`Gropu Read`->`Read 3`
+                            = checkMenu(index, new int[]{1, 2, 3})
+                            // `Email`->`Gropu Read`->`Read 5`
+                            && checkMenu(index, new int[]{1, 2, 5})
+                            // `Email`->`Group Read`->`Group Item->`Item 4`
+                            && checkMenu(index, new int[]{1, 2, 2, 3})
+                            // `Advanced UI`->`Owl Carousel`
+                            && checkMenu(index, new int[]{4, 1})
+                            // `Special Pages`
+                            && checkMenu(index, new int[]{8});
+                    return act;
+                }
+                return true;
+            }
+        });
+
         simpleMenuOption.setMenuStyle(new SimpleMenuStyle() {
             @Override
             public void styleMenuItem(JButton menu, int[] index) {
@@ -191,6 +237,7 @@ public class MyDrawerBuilder extends SimpleDrawerBuilder {
     }
 
     @Override
+
     public void build(DrawerPanel drawerPanel) {
         drawerPanel.putClientProperty(FlatClientProperties.STYLE, ""
                 + "background:$Drawer.background");

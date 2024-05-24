@@ -9,6 +9,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 import raven.menu.FormManager;
+import raven.model.ModelUser;
 
 /**
  *
@@ -64,7 +65,10 @@ public class Login extends JPanel {
 
         // event
         cmdLogin.addActionListener((e) -> {
-            FormManager.login();
+            String userName = txtUsername.getText().trim();
+            // this is just for example to check admin user :)
+            boolean isAdmin = userName.equals("admin");
+            FormManager.login(new ModelUser(userName, isAdmin));
         });
     }
 
