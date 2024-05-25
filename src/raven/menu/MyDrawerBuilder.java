@@ -37,6 +37,9 @@ public class MyDrawerBuilder extends SimpleDrawerBuilder {
 
     public void setUser(ModelUser user) {
         this.user = user;
+        SimpleHeaderData headerData = header.getSimpleHeaderData();
+        headerData.setTitle(user.getUserName());
+        header.setSimpleHeaderData(headerData);
         rebuildMenu();
     }
 
